@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" controller="AgentController">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="agentList" type="List"/>
+    <aura:attribute name="selectedAgent" type="String"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="responseMessage" type="String" default="" />
+    
+    <lightning:card title="Set Working Agent">
+        <lightning:select aura:id="workingAgent" name="selectAgent" label="Agent List" class="posisi">
+            <option value="">Choose Agent</option>
+            <aura:iteration items="{!v.agentList}" var="ag">
+                <option value="{!ag.name}" selected="{!ag.name==v.selectedAgent}">{!ag.name}</option>
+            </aura:iteration>
+        </lightning:select>
+        
+        <lightning:button class="posisi" variant="brand" label="Set as Working Agent" title="Set as working agent" onclick="{! c.submitAgent }" />
+        <p class="response-message"><i>{!v.responseMessage}</i></p>
+    </lightning:card>
+</aura:component>

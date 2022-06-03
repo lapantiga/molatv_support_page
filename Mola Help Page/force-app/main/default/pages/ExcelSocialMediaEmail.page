@@ -1,0 +1,197 @@
+<apex:page standardController="AssessmentPeriod__c" extensions="AssessmentExport" contentType="application/vnd.ms-excel#{!filename}.xls"
+    cache="true" action="{!excelSocmedEmail}">
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/HTML;charset=UTF-8" />
+        <style>
+            .data-subject{
+                background-color:#e2efda;
+                font-size:16px;
+            }
+            .data-header{
+                background-color: #ddebf7;
+                font-size: 14px;
+                height: 80px;
+                text-align: center;
+            }
+            .subheader{
+                background-color:#d9d9d9;
+                font-size:16px;
+            }
+            .data-content{
+                font-size: 16px;
+            }
+            .data-summary{
+                background-color: #fce4d6;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+
+    <strong>MOLA TV</strong>
+    <br/>
+    <strong>Monitoring Form Social Media Instagram &amp; Facebook Mola TV (@hanyaadadimolatv)</strong>
+    <br/>
+    <strong>Monitoring Form Social Media Instagram, Facebook &amp; Twitter Mola TV (@hanyaadadimolatv)</strong>
+    <p></p>
+    <table>
+        <tr>
+            <td>Nama Agent</td>
+            <td>{!apInfo.Agent_Name__c}</td>
+        </tr>
+        <tr>
+            <td>Nama Reviewer</td>
+            <td>{!IF(apInfo.Reviewer__c != null, apInfo.Reviewer__c, '-')}</td>
+        </tr>
+        <tr>
+            <td>Periode</td>
+            <td>{!period}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="background-color:#00b0f0; text-align:center; border: 1px solid #000000">
+                <b>NILAI AKHIR</b>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:center; border: 1px solid #000000">
+                <h1>{!apInfo.Average_Score__c}%</h1>
+            </td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <!-- header -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <apex:variable var="count" value="{!0}" />
+            <apex:repeat value="{!asList}" var="assess">
+                <apex:variable var="count" value="{!count + 1}" />
+                <td style="text-align:center" class="data-subject">
+                    <b>No. {!count}</b>
+                </td>
+                <td colspan="3" class="data-subject">Case: {!assess.Subject_Custom__c} ({!assess.Case_Number__r.CaseNumber})</td>
+            </apex:repeat>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td style="text-align:center" class="data-subject"></td>
+                <td colspan="3" class="data-subject">Date &amp; Time:
+                    <apex:outputField value="{!assess.Case_Number__r.CreatedDate}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-header">
+            <td>No.</td>
+            <td>Category &amp; Element Penilaian</td>
+            <td>Bobot (%)</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td>Evaluation</td>
+                <td>Points</td>
+                <td>Score (%)</td>
+            </apex:repeat>
+        </tr>
+        <!-- main data -->
+        <tr class="subheader">
+            <td></td>
+            <td>Interaksi</td>
+            <td>100</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <td>1</td>
+            <td>Respond Time</td>
+            <td>30</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td><apex:outputField value="{!assess.Respon_Time_Evaluation__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Respon_Time_Point__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Respon_Time_Score__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <td>2</td>
+            <td>Information Accuracy</td>
+            <td>50</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td><apex:outputField value="{!assess.Information_Accuracy_Evaluation__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Information_Accuracy_Point__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Information_Accuracy_Score__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <td>3</td>
+            <td>Courtesy</td>
+            <td>20</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td><apex:outputField value="{!assess.Courtesy__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Courtesy_Point__c}"></apex:outputField></td>
+                <td><apex:outputField value="{!assess.Courtesy_Score__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="subheader">
+            <td></td>
+            <td>Ketidaksesuaian</td>
+            <td></td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td colspan="4"><apex:outputField value="{!assess.Ketidaksesuaian__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="subheader">
+            <td></td>
+            <td>Alasan</td>
+            <td></td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td colspan="4"><apex:outputField value="{!assess.Alasan__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <!-- data summary -->
+        <tr class="data-summary">
+            <td colspan="3">Score</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><apex:outputField value="{!assess.Total_Score__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-summary">
+            <td colspan="3">Remarks Pujian</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><apex:outputField value="{!assess.Remarks_Pujian__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-summary">
+            <td colspan="3">Score + Poin Plus</td>
+            <apex:repeat value="{!asList}" var="assess">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><apex:outputField value="{!assess.Score_and_Remarks_Pujian__c}"></apex:outputField></td>
+            </apex:repeat>
+        </tr>
+    </table>
+
+</apex:page>

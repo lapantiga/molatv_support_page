@@ -1,0 +1,157 @@
+/* Extra small devices (portrait phones, less than 576 */
+@media (max-width: 575.98px) {
+    #navbar{
+        display: none;
+    }
+
+    #navbar-mobile{
+        display: block !important;
+        position: -webkit-sticky;
+        position: sticky;
+        background-color: #000000;
+        top: 0;
+        z-index: 1020;
+    }
+
+    .jumbotron .row, .col-lg-12, .col-lg-10 , .form-control{
+        margin: 0 !important;
+        /* padding: 0 !important; */
+    }
+
+    .jumbotron h1 {
+        margin-left: 0 !important;
+        font-size: 16px;
+        margin-top: 10rem !important;
+        display: inline-block;
+    }
+
+    .jumbotron {
+        background-image: url('../img/background-banner-mobile.svg');
+    }
+
+    h5{
+        font-size: 16px;
+    }
+
+    .popular-topic .card{
+        margin: 5px 0;
+    }
+
+    .list-menu .list-group-item{
+        height: auto;
+        padding: 1.05rem 0;
+    }
+
+    .contact #cs-title{
+        flex-basis: auto;
+    }
+    
+    .contact .col {
+        flex-basis: content;
+    }
+    
+    .contact h5 {
+        font-size: 18px;
+    }
+
+    footer{
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #navbar{
+        display: none;
+    }
+
+    #navbar-mobile{
+        display: block !important;
+        position: -webkit-sticky;
+        position: sticky;
+        background-color: #000000;
+        top: 0;
+        z-index: 1020;
+    }
+
+    .jumbotron .row, .col-lg-12, .col-lg-10 , .form-control{
+        margin: 0 !important;
+        /* padding: 0 !important; */
+    }
+
+    .jumbotron h1 {
+        margin-left: 0 !important;
+        font-size: 16px;
+        margin-top: 10rem !important;
+        display: inline-block;
+    }
+
+    .jumbotron {
+        background-image: url('../img/background-banner-mobile.svg');
+        height: auto;
+        background-position: inherit;
+    }
+
+    .popular-topic .col-sm-3{
+        max-width: 100%;
+        flex: auto;
+    }
+    .popular-topic .card {
+        margin: 5px 0;
+    }
+
+    .list-menu .list-group-item{
+        height: auto;
+        padding: 1.05rem 0;
+    }
+
+    .contact .col {
+        flex-basis: content;
+    }
+
+    footer{
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .jumbotron {
+        background-image: url('../img/background-banner-mobile.svg');
+        background-position: center;
+    }
+
+    .jumbotron h1 {
+        margin-left: 0 !important;
+        font-size: 16px;
+        margin-top: 6rem !important;
+        display: inline-block;
+    }
+
+    .jumbotron .row, .col-lg-12, .col-lg-10 , .form-control{
+        margin: 0 !important;
+    }
+    
+    .list-menu .list-group-item{
+        height: auto;
+        padding: 1.05rem 0;
+    }
+
+    .footer-menu img{
+        padding: 10px 1px 0 7px;
+    }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .footer-menu img{
+        padding: 10px 1px 0 7px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

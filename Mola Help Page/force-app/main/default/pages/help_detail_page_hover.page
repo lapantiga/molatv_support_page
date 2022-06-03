@@ -1,0 +1,618 @@
+<apex:page >
+    <head>
+        <title>Faq</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
+        
+        <style type="text/css">
+            body{
+                background: radial-gradient(110.62% 196.67% at 81.41% 9.17%, rgba(150, 205, 255, 0.19) 0%, rgba(28, 32, 38, 0.2) 100%), #101112;   
+                font-family: 'Public Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+            }
+            
+            h1{
+                font-family: 'Public Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 31px;
+                color: #FFFFFF;
+            }
+            h3{
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 27px;
+                color: #FFFFFF;
+            }
+            hr{
+                background: #343E47;
+            }
+            
+            #navbar{
+                background: rgba(0, 0, 0, 0.7);
+            }
+            
+            [data-toggle="collapse"] i:before {  
+                content: "\f106";
+            }
+            
+            [data-toggle="collapse"].collapsed i:before {
+                content: "\f107";
+            }
+            
+            #accordion ul li{
+                margin-left: 0;
+                padding-left: 0;
+            }
+            
+            #accordion .accordion-title.collapsed {
+                background:#343E47;
+                border-radius: 3px;
+            }
+            
+            #accordion .accordion-title:not(.collapsed) {
+                background:#3D4854;
+                border-radius: 0;
+            }
+            
+            #accordion .accordion-title:not(.collapsed):hover {
+                background:#3D4854;
+            }
+            
+            #accordion .accordion-title{
+                display: block;
+                padding:8px 0 8px 12px;
+                overflow: hidden;
+                text-decoration: none;
+                width: 100%;
+                text-align: left;
+                transition: all .4s ease-in-out;
+                color: #C1C2C2;
+                font-family: 'Public Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                border: none;
+            }
+            
+            #accordion .accordion-title:hover{
+                background: #5D6E80;
+            }
+            
+            #accordion .accordion-title i{
+                color: #fff;
+                background: radial-gradient(rgba(#213744, .8), #213744);
+            }
+            
+            #accordion .accordion-body{
+                background: #3D4854;
+                color: #C1C2C2;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+            <a class="navbar-brand ml-5" href="#">
+                <img src="https://mola-support--crdev--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Png&versionId=0681s0000018Tnc&operationContext=DELIVERY&contentId=05T1s0000053Quk&page=0&d=/a/1s0000000wQB/K8iJlVaDGoc69yhx106SfXhbh3M8_xshSh7Ee.aacwQ&oid=00D1s0000008pLH&dpt=null&viewId=" width="100" height="30" alt="" />
+            </a>
+    
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                </form>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-6"><i class="fas fa-angle-left"></i> back</div>
+                <div class="col-6 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            English
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-6">
+                    <h1>Mola Help Center</h1>
+                    <hr />
+                    <h3>Which user type you are?</h3>
+                    <button type="button" class="btn btn-outline-secondary">Mola Customers</button>
+                    <button type="button" class="btn btn-outline-secondary">Hasn’t Subscribe Mola</button>
+                </div>
+                <div class="col-6">
+                    <h3>How to enjoy Mola</h3>
+                    
+                    <div class="accordion py-2" id="accordion">
+                        <div class="card mb-2 bg-transparent">
+                            <div class="card-header p-0" id="heading1">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse1">
+                                            Android / iOS Smartphone
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+    
+                            <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Android / iOS Smartphone
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading2">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse2" aria-expanded="false"
+                                            aria-controls="collapse2">
+                                            Website
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Website
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading3">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse3" aria-expanded="false"
+                                            aria-controls="collapse3">
+                                            Mola Polytron Streaming Device
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    For users of Mola Polytron Streaming Device already included free subscribing for 1
+                                    year. To further
+                                    purchase a subscription package according to the needs through the Mola.tv website or
+                                    through the Mola
+                                    application on the Subscription Plan menu.
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading4">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
+                                            aria-controls="collapse4">
+                                            Smart TV OS Tizen
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Smart TV OS Tizen
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading5">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse5" aria-expanded="false"
+                                            aria-controls="collapse5">
+                                            Android TV
+                                            <i
+                                                class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Android TV
+                                </div>
+                            </div>
+                        </div>
+    
+                        <h3 class="py-2">Content Information Mola</h3>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading5">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center accordion-title"
+                                        style="padding:1.25rem; background:#343E47;">
+                                        MOLA's answer presents premium content content for action films, series, comedy,
+                                        drama, Kids, Living
+                                        and Sport. Sport shows can be watched on the Sport menu, Movies on the Home menu,
+                                        Kids on the Kids
+                                        menu, and Living on the Living menu
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <h3 class="py-2">Payment Constraints</h3>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading6">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="#collapse6">
+                                            Fail to buy a package through the MOLA application
+                                            <i
+                                                class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Fail to buy a package through the MOLA application
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading7">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse7" aria-expanded="false"
+                                            aria-controls="#collapse7">
+                                            Fail to buy a package through the MOLA.TV website
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Fail to buy a package through the MOLA.TV website
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading8">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse8" aria-expanded="false"
+                                            aria-controls="#collapse8">
+                                            Already paid but not active
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Already paid but not active
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading9">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse9" aria-expanded="false"
+                                            aria-controls="#collapse9">
+                                            Payment twice with the same package
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Payment twice with the same package
+                                </div>
+                            </div>
+                        </div>
+    
+                        <h3 class="py-2">Technical constraints of impressions</h3>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading10">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse10" aria-expanded="false"
+                                            aria-controls="#collapse10">
+                                            Force closed / self-closed show
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Force closed / self-closed show
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading11">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse11" aria-expanded="false"
+                                            aria-controls="#collapse11">
+                                            Buffering / loading on impressions
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Buffering / loading on impressions
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading12">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse12" aria-expanded="false"
+                                            aria-controls="#collapse12">
+                                            The package is active but still asking to subscribe
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    The package is active but still asking to subscribe
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading13">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse13" aria-expanded="false"
+                                            aria-controls="#collapse13">
+                                            There is a sound but no picture
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    There is a sound but no picture
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading14">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse14" aria-expanded="false"
+                                            aria-controls="#collapse14">
+                                            The screen is only black blank
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    The screen is only black blank
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading15">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse15" aria-expanded="false"
+                                            aria-controls="#collapse15">
+                                            Error 1001, 1002, 1003, 1800/1801, 3016, 3101, 3102, 3109, 3106, 6007, 9032,
+                                            9006, 9032, 9006
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Error 1001, 1002, 1003, 1800/1801, 3016, 3101, 3102, 3109, 3106, 6007, 9032, 9006, 9032,
+                                    9006
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading16">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse16" aria-expanded="false"
+                                            aria-controls="#collapse16">
+                                            Mola Has Stopped and Mola Keeps Stopping
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse16" class="collapse" aria-labelledby="heading16" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Mola Has Stopped and Mola Keeps Stopping
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading17">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse17" aria-expanded="false"
+                                            aria-controls="#collapse17">
+                                            This Live Video has ended
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    This Live Video has ended
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading18">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse18" aria-expanded="false"
+                                            aria-controls="collapse18">
+                                            Error: 0x1, 0x80000002, Error: 0x1, 0x85000001, Error: E0x0000, Error: E0x0001,
+                                            Error: E0x0002,
+                                            Error: E1x0000, Error 0xc1c, 0xC21, Error 0xFA0, 0xFA1
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Error: 0x1, 0x80000002, Error: 0x1, 0x85000001, Error: E0x0000, Error: E0x0001, Error:
+                                    E0x0002, Error:
+                                    E1x0000, Error 0xc1c, 0xC21, Error 0xFA0, 0xFA1
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading19">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse19" aria-expanded="false"
+                                            aria-controls="collapse19">
+                                            Forgot Pin Parental Impressions
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse19" class="collapse" aria-labelledby="heading19" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Forgot Pin Parental Impressions
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading20">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse20" aria-expanded="false"
+                                            aria-controls="collapse20">
+                                            One set of birth dates on the Mola account
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse20" class="collapse" aria-labelledby="heading20" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    One set of birth dates on the Mola account
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading21">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse21" aria-expanded="false"
+                                            aria-controls="collapse21">
+                                            I forgot the password of the mola account
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse21" class="collapse" aria-labelledby="heading21" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    I forgot the password of the mola account
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card border-0 mb-2 bg-transparent">
+                            <div class="card-header p-0 border-0" id="heading22">
+                                <h2 class="mb-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center accordion-title collapsed"
+                                            data-toggle="collapse" data-target="#collapse22" aria-expanded="false"
+                                            aria-controls="collapse22">
+                                            Constraints "You Have Exceed Maximum Failed Login Attempt"
+                                            <i class="fas fa-angle-down text-center d-flex align-items-center justify-content-end mr-3 h-100"></i>
+                                        </li>
+                                    </ul>
+                                </h2>
+                            </div>
+                            <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#accordion">
+                                <div class="card-body accordion-body">
+                                    Constraints "You Have Exceed Maximum Failed Login Attempt"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</apex:page>

@@ -1,0 +1,250 @@
+<apex:page applyHtmlTag="false" renderAs="pdf" showHeader="false" standardController="AssessmentPeriod__c" extensions="GeneratePDF_C" action="{!getData}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <style type="text/css">
+            .container{
+            width: 100%;
+            }
+            .table1{
+            border: 1px solid black;
+            width: 100%;
+            }
+            .respon{
+            font-size: 18px;
+            text-align:center;
+            background-color: #F0F8FF;
+            }
+            th, td{
+            border-collapse: collapse;
+            }
+            .asses{
+            background-color:#f9f9f9;
+            }
+            .info{
+            background-color:#f9f9f9;
+            font-size: 18px;
+            text-align:center;
+            }
+            h2{
+            text-align:center;
+            }
+            table, tr{
+            page-break-inside: avoid;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="container">
+            <tr>
+                <td>Period Name : {!nameperiod}</td>
+                <td>Start Date : {!myStart}</td>
+            </tr>
+            <tr>
+                <td>Agent Name : {!agentname}</td>
+                <td>End Date : {!myEnd}</td>         
+            </tr>
+            <tr>
+                <td colspan="2">Total Score Summary : {!totalscore}</td>
+            </tr>
+            <tr>
+                <td>Total Case : {!totalcase}</td>
+            </tr>
+            <tr>
+                <td>Average Score : {!average}</td>
+                <td>Reviewer : <b>{!reviewer}</b></td>
+            </tr>
+        </table><br/>
+        <apex:repeat value="{!assesment}" var="ass">
+            <apex:outputPanel rendered="{!IF(ass.RecordType.Name=='Social Media + Email' , true , false)}">
+                <div style="page-break-after:always;">
+                    <h2>
+                        {!ass.Case_Number__r.CaseNumber}
+                    </h2>
+                    <table border = "1" cellpadding = "1" cellspacing = "1" class="container">
+                        <th colspan="2" class="respon">INFORMATION</th>
+                        <tr>
+                            <td colspan="2">Subject Custom : {!ass.Subject_Custom__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name : {!ass.Agent_Name__c}</td>
+                            <td>Total Score : {!ass.Total_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Created date Case : {!ass.Case_Number__r.CreatedDate}</td>
+                            <td>Remarks Pujian : {!ass.Remarks_Pujian__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Record Type : {!ass.RecordType.Name}</td>
+                            <td>Score and Remarks Pujian : {!ass.Score_and_Remarks_Pujian__c}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Ketidaksesuaian : {!ass.Ketidaksesuaian__c}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Alasan : {!ass.Alasan__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">RESPON TIME</th>
+                        <tr>
+                            <td rowspan="2">Respon Time Evaluation : {!ass.Respon_Time_Evaluation__c}</td>
+                            <td>Respon Time Poin : {!ass.Respon_Time_Point__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Respon Time Score : {!ass.Respon_Time_Score__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">INFORMATION ACCURACY</th>
+                        <tr >
+                            <td rowspan="2">Information Accuracy Evalution : {!ass.Information_Accuracy_Evaluation__c}</td>
+                            <td>Information Accuracy Poin : {!ass.Information_Accuracy_Point__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Information Accuracy Score : {!ass.Information_Accuracy_Score__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">COURTESY</th>
+                        <tr>
+                            <td rowspan="2">Courtesy Evaluation : {!ass.Courtesy__c}</td>
+                            <td>Courtesy Point : {!ass.Courtesy_Point__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Courtesy Score : {!ass.Courtesy_Score__c}</td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(ass.RecordType.Name=='Live Chat' , true , false)}"> 
+                <div style="page-break-after:always;">
+                    <h2>
+                        {!ass.Case_Number__r.CaseNumber}
+                    </h2>
+                    <table border ="1" cellpadding = "1" cellspacing = "1" class="container">
+                        <th colspan="2" class="respon">INFORMATION</th>
+                        <tr>
+                            <td colspan="2">Subject Custom : {!ass.Subject_Custom__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Agent Name : {!ass.Agent_Name__c}</td>
+                            <td>Total Score : {!ass.Total_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Created date Case : {!ass.Case_Number__r.CreatedDate}</td>
+                            <td>Remarks Pujian : {!ass.Remarks_Pujian__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Record Type : {!ass.RecordType.Name}</td>
+                            <td>Score and Remarks Pujian : {!ass.Score_and_Remarks_Pujian__c}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Ketidaksesuaian : {!ass.Ketidaksesuaian__c}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Alasan : {!ass.Alasan__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">SALAM PEMBUKA</th>
+                        <tr>
+                            <td rowspan="2">Salam Pembuka Evaluation : {!ass.Salam_Penutup_Evaluation__c}</td>
+                            <td>Salam Pembuka Score : {!ass.Salam_Penutup_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Salam Pembuka Point : {!ass.Salam_Penutup_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">FIRST RESPONSE AND NEXT RESPONSE</th>
+                        <tr>
+                            <td rowspan="2">First Response and Next Response Evaluation : {!ass.First_Response_Next_Response_Evaluation__c}</td>
+                            <td>First Response and Next Response Score : {!ass.First_Response_Next_Response_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>First Response and Next Response Point : {!ass.First_Response_Next_Response__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">SAPA NAMA PEMILIK AKUN</th>
+                        <tr>
+                            <td rowspan="2">Sapa Nama Pemilik Akun Evaluation : {!ass.Sapa_Nama_Pemilik_Akun_Evaluation__c}</td>
+                            <td>Sapa Nama Pemilik Akun Score : {!ass.Sapa_Nama_Pemilik_Akun_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Sapa Nama Pemilik Akun Point : {!ass.Sapa_Nama_Pemilik_Akun_Point__c }</td>
+                        </tr>
+                        <th colspan="2" class="info">PENGGUNAAN BAHASA DAN SINGKATAN UMUM</th>
+                        <tr>
+                            <td rowspan="2">Penggunaan Bahasa Singkatan Evaluation : {!ass.Penggunaan_Bahasa_Singkatan_Evaluation__c}</td>
+                            <td>Penggunaan Bahasa Singkatan Score : {!ass.Penggunaan_Bahasa_Singkatan_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Penggunaan Bahasa Singkatan Point : {!ass.Penggunaan_Bahasa_Singkatan_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">PENGGUNAAN JARGON</th>
+                        <tr>
+                            <td rowspan="2">Penggunaan Jargon Evaluation : {!ass.Penggunaan_Jargon__c}</td>
+                            <td>Penggunaan Jargon Score : {!ass.Penggunaan_Jargon_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Penggunaan Jargon Point : {!ass.Penggunaan_Jargon_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">EMPATI</th>
+                        <tr>
+                            <td rowspan="2">Empati Evaluation : {!ass.Empati_Evaluation__c}</td>
+                            <td>Empati Score : {!ass.Empati_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Empati Point : {!ass.Empati_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">GALI INFO</th>
+                        <tr>
+                            <td rowspan="2">Gali Info Evaluation : {!ass.Gali_Info_Evaluation__c}</td>
+                            <td>Gali Info Score : {!ass.Gali_Info_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Gali Info Point : {!ass.Gali_Info_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">ANALISA PERMASALAHAN</th>
+                        <tr>
+                            <td rowspan="2">Analisa Permasalahan Evaluation : {!ass.Analisa_Permasalahan_Evaluation__c}</td>
+                            <td>Analisa Permasalahan Score : {!ass.Analisa_Permasalahan_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Analisa Permasalahan Point : {!ass.Analisa_Permasalahan_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">MEMBERIKAN SOLUSI</th>
+                        <tr>
+                            <td rowspan="2">Memberikan Solusi Evaluation : {!ass.Memberikan_Solusi_Evaluation__c}</td>
+                            <td>Memberikan Solusi Score : {!ass.Memberikan_Solusi_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Memberikan Solusi Point : {!ass.Memberikan_Solusi_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">MENJAWAB SEMUA PERTANYAAN USER</th>
+                        <tr>
+                            <td rowspan="2">Menjawab Semua Pertanyaan Evaluation : {!ass.Menjawab_Semua_Pertanyaan_Evaluation__c}</td>
+                            <td>Menjawab Semua Pertanyaan Score : {!ass.Menjawab_Semua_Pertanyaan_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Menjawab Semua Pertanyaan Point : {!ass.Menjawab_Semua_Pertanyaan_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">LAKUKAN PENCATATAN</th>
+                        <tr>
+                            <td rowspan="2">Lakukan Pencatatan Evaluation : {!ass.Lakukan_Pencatatan_Evaluation__c}</td>
+                            <td>Lakukan Pencatatan Score : {!ass.Lakukan_Pencatatan_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Lakukan Pencatatan Point : {!ass.Lakukan_Pencatatan_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">MAINTENANCE CHAT</th>
+                        <tr>
+                            <td rowspan="2">Maintenance Chat Evaluation : {!ass.Maintenance_Chat_Evaluation__c}</td>
+                            <td>Maintenance Chat Score : {!ass.Maintenance_Chat_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance Chat Point : {!ass.Maintenance_Chat_Point__c}</td>
+                        </tr>
+                        <th colspan="2" class="info">SALAM PENUTUP</th>
+                        <tr>
+                            <td rowspan="2">Salam Penutup Evaluation : {!ass.Salam_Penutup_Evaluation__c}</td>
+                            <td>Salam Penutup Score : {!ass.Salam_Penutup_Score__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Salam Penutup Point : {!ass.Salam_Penutup_Point__c}</td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+        </apex:repeat>
+    </body>
+</apex:page>

@@ -1,0 +1,216 @@
+<aura:component controller="EditAllCaseController"
+    implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickActionWithoutHeader,force:hasRecordId"
+    access="global">
+    <aura:attribute name="assessmentId" type="String" />
+    <aura:attribute name="input" type="Assessment__c" default="{'sobjectType':'Assessment__c'}" />
+    <aura:attribute name="score" type="Scoring__c" default="{'sobjectType':'Scoring__c'}" />
+    <aura:attribute name="subLst" type="List" />
+    <aura:attribute name="selectedValue" type="String" />
+    <aura:attribute name="caseList" type="String" />
+    <aura:attribute name="pageReference" type="String" />
+    <aura:attribute name="recId" type="String" />
+    <aura:attribute name="edited" type="String" />
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="errLimit" type="boolean" default="false" />
+    <aura:attribute name="errVar" type="boolean" default="true" />
+    <aura:attribute name="errMsg" type="String" />
+
+    <!--Scoring-->
+    <aura:attribute name="respPointPass" type="Decimal" />
+    <aura:attribute name="respPointFail" type="Decimal" />
+    <aura:attribute name="respScorePass" type="Decimal" />
+    <aura:attribute name="respScoreFail" type="Decimal" />
+     
+    <aura:attribute name="InfoAkurPointPass" type="Decimal" />
+    <aura:attribute name="InfoAkurPointFail" type="Decimal" />
+    <aura:attribute name="InfoAkurScorePass" type="Decimal" />
+    <aura:attribute name="InfoAkurScoreFail" type="Decimal" />
+
+    <aura:attribute name="CourtesyPointPass" type="Decimal" />
+    <aura:attribute name="CourtesyPointFail" type="Decimal" />
+    <aura:attribute name="CourtesyScorePass" type="Decimal" />
+    <aura:attribute name="CourtesyScoreFail" type="Decimal" />
+    <!--End of score-->
+    <lightning:workspaceAPI aura:id="workingspace" />
+    <aura:method name="updateAcc" action="{! c.doInit}" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:html tag="style">
+        .slds-card__body{
+        padding: 20px;
+        }
+    </aura:html>
+    <lightning:card>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+                <!--<ui:inputSelect label="Case Number" aura:id="Case" change="{!c.getSelectedValue}">-->
+                <!--<aura:iteration items="{!v.caseList}" var="csNumber">-->
+                    <!--<lightning:input type="String" readonly="true" label="{!csNumber.Case_Number__r.CaseNumber + ' - ' + csNumber.Subject__c}" text="{!csNumber.Case_Number__r.CaseNumbe}" value="{!csNumber.Case_Number__r.CaseNumber + ' - ' + csNumber.Subject__c}"/>-->
+                    <lightning:input value="{!v.input.Case_Number__r.CaseNumber +' - '+v.input.Subject_Custom__c}"
+                        label="Case Number" disabled="true" />
+                <!--</aura:iteration>-->
+                <!--</ui:inputSelect>-->
+            </div>
+        </div>
+    </lightning:card>
+
+
+    <lightning:card>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning:input value="{!v.input.Subject_Custom__c}" label="Subject Free Text" required="true" />
+                </div>
+            </div>
+        <br />
+        <!--response time-->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <div class="slds-section slds-is-open">
+                    <h3 style="padding:0.7rem;background:#16325c">
+                        <div class="slds-text-color_inverse">Response Time</div>
+                    </h3>
+                </div>
+
+                <lightning:select name="select1" aura:id="select1" label="Evaluation" required="true" value="{!v.input.Respon_Time_Evaluation__c}"
+                    onchange="{!c.changePS}">
+                    <option value="choose one...">choose one...</option>
+                    <option>Pass</option>
+                    <option>Fail</option>
+                </lightning:select>
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning:input value="{!v.input.Respon_Time_Point__c}" label="Point" disabled="true"
+                            required="true" />
+
+                    </div>
+                    <div class="slds-col">
+                        <lightning:input value="{!v.input.Respon_Time_Score__c}" label="Score" disabled="true"
+                            required="true" />
+                    </div>
+                </div>
+            </div>
+
+            <!--Akurasi-->
+
+            <div class="slds-col">
+                <div class="slds-section slds-is-open">
+                    <h3 style="padding:0.7rem;background:#16325c">
+                        <div class="slds-text-color_inverse">Akurasi</div>
+                    </h3>
+                </div>
+
+                <lightning:select name="select2" aura:id="select2" label="Evaluation" required="true" value="{!v.input.Information_Accuracy_Evaluation__c}"
+                    onchange="{!c.changeIA}">
+                    <option value="choose one...">choose one...</option>
+                    <option>Pass</option>
+                    <option>Fail</option>
+                </lightning:select>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning:input value="{!v.input.Information_Accuracy_Point__c}" label="Point" disabled="true"
+                            required="true" />
+                    </div>
+                    <div class="slds-col">
+                        <lightning:input value="{!v.input.Information_Accuracy_Score__c}" label="Score" disabled="true"
+                            required="true" />
+                    </div>
+                </div>
+            </div>
+
+            <!--Courtesy-->
+            <div class="slds-col">
+                <div class="slds-section slds-is-open">
+                    <h3 style="padding:0.7rem;background:#16325c">
+                        <div class="slds-text-color_inverse">Courtesy</div>
+                    </h3>
+                </div>
+                <lightning:select name="select3" aura:id="select3" label="Evaluation" required="true" value="{!v.input.Courtesy__c}"
+                    onchange="{!c.changeCP}">
+                    <option value="choose one...">choose one...</option>
+                    <option>Pass</option>
+                    <option>Fail</option>
+                </lightning:select>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning:input value="{!v.input.Courtesy_Point__c}" label="Point" disabled="true"
+                            required="true" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning:input value="{!v.input.Courtesy_Score__c}" label="Score" disabled="true"
+                            required="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Information-->
+        <br />
+        <div class="slds-section slds-is-open">
+            <h3 style="padding:0.7rem;background:#16325c">
+                <div class="slds-text-color_inverse">Information</div>
+            </h3>
+        </div>
+
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+                <lightning:select name="select4" aura:id="select4" label="Remarks Pujian" required="true" value="{!v.input.Remarks_Pujian__c}"
+                    onchange="{!c.changeRP}">
+                    <option>choose one...</option>
+                    <option>1</option>
+                    <option>0</option>
+                </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_1-of-3">
+                <lightning:input value="{!v.input.Ketidaksesuaian__c}" label="ketidaksesuaian" required="false" />
+            </div>
+
+            <div class="slds-col slds-size_1-of-3">
+                <lightning:input value="{!v.input.Alasan__c}" label="Alasan" required="false" />
+            </div>
+        </div>
+
+        <br />
+        Score:
+        <ui:outputText value="{!v.input.Total_Score__c}" />
+        <br />
+        <br />
+        Score + Remarks Pujian:
+        <ui:outputText value="{!v.input.Score_and_Remarks_Pujian__c}" />
+        <br />
+        <div style="color: red;">
+            <ui:outputText value="{!v.errMsg}" />
+        </div>
+        <br />
+        <br/>
+        <lightning:button variant="brand" label="Save" title="Base action" onclick="{!c.btn_Save}" />
+
+        <aura:if isTrue="{!v.errLimit}">
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{!c.closeModel }"
+                            alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">WARNING!</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                        style="height: unset !important">
+                        <p style="color:red; text-align: center;">There are no case left</p>
+                    </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="OK" title="OK" onclick="{!c.closeModel }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </lightning:card>
+
+</aura:component>

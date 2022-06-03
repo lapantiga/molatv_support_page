@@ -1,0 +1,390 @@
+<apex:page standardController="AssessmentPeriod__c" extensions="AssessmentExport" contentType="application/vnd.ms-excel#{!filename}.xls"
+    cache="true" action="{!excelLiveChat}">
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/HTML;charset=UTF-8" />
+        <style>
+            .data-subject {
+                background-color: #e2efda;
+                font-size: 16px;
+            }
+
+            .data-header {
+                background-color: #d9e1f2;
+                font-size: 14px;
+                height: 80px;
+                text-align: center;
+            }
+
+            .subheader {
+                background-color: #d9d9d9;
+                font-size: 16px;
+            }
+
+            .data-content {
+                font-size: 16px;
+            }
+
+            .data-summary {
+                background-color: #ffff00;
+                font-size: 16px;
+            }
+
+            .col-bobot {
+                background-color: #ff99ff;
+            }
+        </style>
+    </head>
+
+    <p>
+        <strong>Monitoring Live Chat</strong>
+    </p>
+    <table>
+        <tr>
+            <td>Nama Agent</td>
+            <td>{!apInfo.Agent_Name__c}</td>
+        </tr>
+        <tr>
+            <td>Nama Reviewer</td>
+            <td>{!IF(apInfo.Reviewer__c != null, apInfo.Reviewer__c, '-')}</td>
+        </tr>
+        <tr>
+            <td>Periode</td>
+            <td>{!period}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="background-color:#00b0f0; text-align:center; border: 1px solid #000000">
+                <b>TOTAL NILAI</b>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:center; border: 1px solid #000000">
+                <h1>{!apInfo.Average_Score__c}%</h1>
+            </td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <!-- header -->
+        <tr>
+            <apex:variable var="count" value="{!0}" />
+            <apex:repeat value="{!asList}" var="assess">
+                <apex:variable var="count" value="{!count + 1}" />
+                <td style="text-align:center" class="data-subject" rowspan="2">
+                    <b>No. {!count}</b>
+                </td>
+                <td colspan="4" class="data-subject">Case: {!assess.Subject_Custom__c} ({!assess.Case_Number__r.CaseNumber})</td>
+            </apex:repeat>
+        </tr>
+        <tr>
+            <apex:repeat value="{!asList}" var="assess">
+                <!-- <td style="text-align:center" class="data-subject"></td> -->
+                <td colspan="4" class="data-subject">Date &amp; Time:
+                    <apex:outputField value="{!assess.Case_Number__r.CreatedDate}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-header">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Category &amp; Element Penilaian</td>
+                <td>Evaluation</td>
+                <td>Points</td>
+                <td>Bobot (%)</td>
+                <td>Score (%)</td>
+            </apex:repeat>
+        </tr>
+        <!-- main data -->
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>1. Pembuka</td>
+                <td></td>
+                <td></td>
+                <td class="col-bobot"></td>
+                <td></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>1.1 Salam Pembuka</td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Pembuka_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Pembuka_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">5</td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Pembuka_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr></tr>
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2. Interaksi</td>
+                <td></td>
+                <td></td>
+                <td class="col-bobot"></td>
+                <td></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.1 First Response &amp; Next Response</td>
+                <td>
+                    <apex:outputField value="{!assess.First_Response_Next_Response_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.First_Response_Next_Response__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">8</td>
+                <td>
+                    <apex:outputField value="{!assess.First_Response_Next_Response_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.2 Sapa nama pemilik akun</td>
+                <td>
+                    <apex:outputField value="{!assess.Sapa_Nama_Pemilik_Akun_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Sapa_Nama_Pemilik_Akun_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">3</td>
+                <td>
+                    <apex:outputField value="{!assess.Sapa_Nama_Pemilik_Akun_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.3 Penggunaan bahasa dan singkatan umum</td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Bahasa_Singkatan_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Bahasa_Singkatan_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">3</td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Bahasa_Singkatan_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.4 Penggunaan Jargon</td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Jargon__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Jargon_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">3</td>
+                <td>
+                    <apex:outputField value="{!assess.Penggunaan_Jargon_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.5 Empati</td>
+                <td>
+                    <apex:outputField value="{!assess.Empati_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Empati_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">3</td>
+                <td>
+                    <apex:outputField value="{!assess.Empati_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>2.6 Gali Info</td>
+                <td>
+                    <apex:outputField value="{!assess.Gali_Info_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Gali_Info_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">5</td>
+                <td>
+                    <apex:outputField value="{!assess.Gali_Info_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr></tr>
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3. Solusi</td>
+                <td></td>
+                <td></td>
+                <td class="col-bobot"></td>
+                <td></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3.1 Analisa permasalahan</td>
+                <td>
+                    <apex:outputField value="{!assess.Analisa_Permasalahan_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Analisa_Permasalahan_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">10</td>
+                <td>
+                    <apex:outputField value="{!assess.Analisa_Permasalahan_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3.2 Memberikan solusi</td>
+                <td>
+                    <apex:outputField value="{!assess.Memberikan_Solusi_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Memberikan_Solusi_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">30</td>
+                <td>
+                    <apex:outputField value="{!assess.Memberikan_Solusi_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3.3 Menjawab semua pertanyaan user</td>
+                <td>
+                    <apex:outputField value="{!assess.Menjawab_Semua_Pertanyaan_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Menjawab_Semua_Pertanyaan_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">15</td>
+                <td>
+                    <apex:outputField value="{!assess.Menjawab_Semua_Pertanyaan_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3.4 Lakukan Pencatatan</td>
+                <td>
+                    <apex:outputField value="{!assess.Lakukan_Pencatatan_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Lakukan_Pencatatan_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">3</td>
+                <td>
+                    <apex:outputField value="{!assess.Lakukan_Pencatatan_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>3.5 Maintenance Chat</td>
+                <td>
+                    <apex:outputField value="{!assess.Maintenance_Chat_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Maintenance_Chat_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">7</td>
+                <td>
+                    <apex:outputField value="{!assess.Maintenance_Chat_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr></tr>
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>4. Penutup</td>
+                <td></td>
+                <td></td>
+                <td class="col-bobot"></td>
+                <td></td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-content">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>4.1 Salam Penutup</td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Penutup_Evaluation__c}"></apex:outputField>
+                </td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Penutup_Point__c}"></apex:outputField>
+                </td>
+                <td class="col-bobot">5</td>
+                <td>
+                    <apex:outputField value="{!assess.Salam_Penutup_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Ketidaksesuaian</td>
+                <td colspan="4">
+                    <apex:outputField value="{!assess.Ketidaksesuaian__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="subheader">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Alasan</td>
+                <td colspan="4">
+                    <apex:outputField value="{!assess.Alasan__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <!-- data summary -->
+        <tr class="data-summary">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Score</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <apex:outputField value="{!assess.Total_Score__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-summary">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Remarks Pujian</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <apex:outputField value="{!assess.Remarks_Pujian__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+        <tr class="data-summary">
+            <apex:repeat value="{!asList}" var="assess">
+                <td>Score + Poin Plus</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <apex:outputField value="{!assess.Score_and_Remarks_Pujian__c}"></apex:outputField>
+                </td>
+            </apex:repeat>
+        </tr>
+    </table>
+
+</apex:page>

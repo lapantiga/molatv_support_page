@@ -1,0 +1,92 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickActionWithoutHeader,force:hasRecordId" controller="CheckListCaseController" access="global">
+        <aura:attribute type="Case[]" name="csList"/>
+        <aura:attribute name="mycolumns" type="List"/>
+        <aura:attribute name="selectedRowsList" type="List" />
+        <aura:attribute name="selectedRows" type="List" />
+        <aura:attribute name="selectedRowsCount" type="Integer" default="0"/>
+        <aura:attribute name="maxRowSelection" type="Integer" default="30"/>
+        <aura:attribute name="recordId" type="Id" />
+        <aura:attribute name="recordTypeName" type="String" />
+        <aura:attribute name="checkData" type="Boolean"/>
+        <aura:attribute name="myCase" type="Object"/>
+        <!--<aura:attribute name="filter" type="String" />-->
+        <aura:attribute name="errMessage" type="String" default=""/>
+        <aura:attribute name="hideview" type="Boolean"  default="true"/>
+        <aura:attribute name="OpenPopup" type="Boolean"  default="false"/>
+        <aura:attribute name="sortedBy" type="String" default="Name"/>
+        <aura:attribute name="sortedDirection" type="String" default="asc"/>
+        <aura:html tag="style">
+                .cuf-content {
+                    padding: 5 !important;
+                }
+                .slds-p-around--medium {
+                    padding: 0rem !important;
+                }       
+                .slds-modal__content{
+                    height:85% !important;
+                    max-height:85% !important;
+                }
+        </aura:html>
+        <aura:handler name="init" value="{!this}" action="{!c.fetchCs}"/>
+       
+        <div class="slds-col modal-header slds-modal__header">
+                <h2 class="title slds-text-heading--medium">Generate Case</h2>
+        </div>
+
+        <p style="color:red; font-size: 12pt; text-align:center; padding:15px;">{!v.errMessage}</p>
+        <div class="{!v.hideview ? '' : 'slds-hide'}">
+                <div style="padding: 0 10px 0;">
+                        <!--<lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="Filter" />-->
+                        <h1>Selected Rows: {! v.selectedRowsCount }</h1>
+                        <lightning:datatable data="{! v.myCase }"
+                                columns="{! v.mycolumns }"
+                                keyField="id"
+                                maxRowSelection="{! v.maxRowSelection }"
+                                hideCheckboxColumn="false"
+                                onrowselection="{! c.updateSelectedText }"
+                                onsort="{!c.sorting}"
+                                sortedBy="{!v.sortedBy}"  
+                                sortedDirection="{!v.sortedDirection}"
+                                selectedRows="{! v.selectedRows }"/>
+                </div>
+
+                <div class="slds-col modal-footer slds-modal__footer" style="position: absolute; top: 83%; width: 100%; left: 0%;">
+                        <lightning:button variant="neutral" label="Cancel" onclick="{! c.cancelClick }" />
+                        <lightning:button variant="brand" label="Choose" onclick="{! c.chooseClick }" />
+                </div>
+        </div>
+        <aura:if isTrue="{!v.OpenPopup}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{!c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">WARNING!</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height: unset !important">
+                    <p style="color:red;"> Minimum Selection Are 15</p>
+                </div>
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="OK"
+                                      title="OK"
+                                      onclick="{!c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+        <!--<div class="slds-col modal-footer slds-modal__footer">
+                <lightning:button variant="neutral" label="Cancel" onclick="{! c.cancelClick }" />
+        </div>-->
+        
+
+</aura:component>

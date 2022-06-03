@@ -1,0 +1,3 @@
+<apex:page standardController="AssessmentPeriod__c" extensions="AssessmentExport" action="{!convert}">
+<!-- There is nothing here. Controller will do the logic. -->
+</apex:page>
