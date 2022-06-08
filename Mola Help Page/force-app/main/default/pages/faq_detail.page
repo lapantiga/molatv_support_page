@@ -1,0 +1,222 @@
+<apex:page controller="FAQController" action="{!InitData}">
+<head>
+    <title>Welcome to the Help Center</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.faqbundle, 'css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.faqbundle, 'css/all.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.faqbundle, 'css/style.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.faqbundle, 'css/responsive.css')}"/>
+    <style>
+        h1, h4{
+        	margin-top: 24px;
+        	marin-bottom: 16px;
+        }
+        .container{
+        	color: #C1C2C2 !important;
+        }
+        .help-body > p{
+        	padding-top: 24px;
+        	text-align: justify;
+        }
+        .help-header{
+        	border-bottom: solid 0.5px #3D4854;
+        	padding-top: 24px;
+        	padding-bottom: 24px;
+        }
+
+        ul{
+        	list-style-type: none;
+        	padding: 0px;
+		}
+        ul, li{
+        	margin-left: 0px !important;
+        }
+        ul.help-suggested > li{
+        	padding-top: 12px;
+        	padding-bottom: 12px;
+        	border-bottom: solid 0.5px #3D4854;
+        }
+        ul.help-suggested > li > a{
+        	color: white;
+        	transition: color 0.5s;
+        }
+        
+        ul.help-suggested > li > a:hover{
+        	color: #1F93FF;
+        }
+        
+        ul.help-suggested > li:last-child{
+        	border-bottom: none;
+        }
+        	
+    </style>
+    </head>
+<body>
+    <nav class="navbar sticky-top navbar-light" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{!URLFOR($Resource.faqbundle, 'img/logo-mola.svg')}"
+                     width="100" height="30" alt=""/>
+            </a>
+            <form class="form-inline">
+                <div class="lang form-group">
+                    <select class="form-control form-control-md" id="exampleFormControlSelect1">
+                        <option>English</option>
+                        <option>Indonesia</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="sticky-mobile" id="navbar-mobile" style="display:none;">
+        <div class="container">
+            <div class="row justify-content-between py-2">
+                <div class="col-4 align-self-center">
+                    <a href="#" class="navbar-brand"><span class="span-navbar-mobile"><i class="fas fa-arrow-left"></i> Help Center</span></a>
+                </div>
+                <div class="col-4 align-self-center">
+                    <form class="form-inline">
+                        <div class="form-group no-margin lang-mobile">
+                            <select class="form-control form-control-sm" id="exampleFormControlSelect1">
+                                <option>English</option>
+                                <option>Indonesia</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        
+        <div class="row text-white" style="margin-top: 32px;">
+            <div class="col-sm-12">
+                <a href="#"><i class="fa fa-arrow-left"></i>Back to Help Home</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 help-header">
+                <h1 class="text-white">
+                    {!title}
+                </h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-9">
+                <div class="help-body">
+                    <p>
+                        {!answer}
+                    </p>
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                <h5 class="text-white">
+                    Suggested Question
+                </h5>
+                <ul class="help-suggested">
+                    <li><a href="#">Network Connectivity</a></li>
+                    <li><a href="#">Desktop Browser</a></li>
+                    <li><a href="#">iPhone or iPad</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">System Requirements</a></li>
+                    <li><a href="#">TV Apps</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-5" />
+        <div class="row justify-content-md-center contact">
+            <h5 class="col col-md-12 text-center text-white mb-5" id="cs-title">We are available for contact support</h5>
+            <div class="col col-md-2 text-center">
+                <a href="#">
+                    <div class="cs1"></div>
+                    <p class="mt-2 text-cs">Live Chat Support</p>
+                </a>
+            </div>
+            <div class="col col-md-2 text-center">
+                <a href="#">
+                    <div class="cs2"></div>
+                    <p class="mt-2 text-cs">Submit Request</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-area footer-light">
+        <div class="footer-big">
+            <div class="container">
+                <hr />
+                <div class="row px-5 justify-content-center">
+
+                    <div class="col-md-2">
+                        <div class="footer-widget">
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">Mola Originals</a></li>
+                                    <li><a href="#">Premier League</a></li>
+                                    <li><a href="#">Movies</a></li>
+                                    <li><a href="#">Kids</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="footer-widget">
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">Promo</a></li>
+                                    <li><a href="#">Refund</a></li>
+                                    <li><a href="#">Subscription Plan</a></li>
+                                    <li><a href="#">Customer Support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="footer-widget">
+                            <div class="footer-menu no-padding">
+                                <ul>
+                                    <li><a href="#">System Info</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Term and Conditions</a></li>
+                                    <li><a href="#">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="footer-widget">
+                            <div class="footer-menu mb-2">
+                                <i class="fa-brands fa-facebook-f fa-lg text-secondary"></i>
+                                <i class="fa-brands fa-twitter fa-lg text-secondary"></i>
+                                <i class="fa-brands fa-instagram fa-lg text-secondary"></i>
+                            </div>
+                            <div class="footer-menu mb-2">
+                                <img src="{!URLFOR($Resource.faqbundle, 'img/Google-Play-mola.svg')}" alt="" />
+                                <img src="{!URLFOR($Resource.faqbundle, 'img/Apple-Store-mola.svg')}" alt="" />
+                            </div>
+                            <div class="footer-menu mb-2">
+                                <small class="text-secondary">© 2021 Mola TV</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-live">
+                    <span class="icon-arrow-up"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <apex:includeScript value="{!URLFOR($Resource.faqbundle, 'js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.faqbundle, 'js/jquery-3.3.1.slim.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.faqbundle, 'js/popper.min.js')}"/>
+        
+    </body>
+    </apex:page>
